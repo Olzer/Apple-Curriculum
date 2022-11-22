@@ -1,10 +1,3 @@
-//
-//  Emoji.swift
-//  EmojiDictionary_2
-//
-//  Created by Oleg Dorozhovets on 19/10/2022.
-//
-
 import Foundation
 
 struct Emoji: Codable {
@@ -13,21 +6,17 @@ struct Emoji: Codable {
     var descriprion: String
     var usage      : String
     
-    
-    //arvhicing emojies
     static var documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     static let archiveURL         = documentsDirectory.appendingPathComponent("emojis").appendingPathExtension("plist")
     
     
     static func saveToFile(emojies: [Emoji]) {
-        //encode the files
         let propertyListEncoder = PropertyListEncoder()
         let encodeEmojies = try? propertyListEncoder.encode(emojies)
         try? encodeEmojies?.write(to: archiveURL, options: .noFileProtection)
     }
     
     static func loadFromFile() -> [Emoji] {
-        //decode the files
         let propertyListDecoder = PropertyListDecoder()
         
         if let retrievedEmojiesData = try? Data(contentsOf: archiveURL),
@@ -53,6 +42,4 @@ struct Emoji: Codable {
         ]
         return emojis
     }
-    
-    
 }
