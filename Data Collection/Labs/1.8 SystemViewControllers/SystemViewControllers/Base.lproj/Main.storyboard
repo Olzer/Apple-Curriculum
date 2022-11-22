@@ -1,24 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eUY-oe-zvQ">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Image View Controller-->
+        <scene sceneID="yhi-1X-hKP">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="eUY-oe-zvQ" customClass="ImageViewController" customModule="SystemViewControllers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fu0-Qk-6gV">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hubble-Jupiter-2021" translatesAutoresizingMaskIntoConstraints="NO" id="miE-8X-Sy5">
+                                <rect key="frame" x="20" y="89" width="353" height="350"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="47H-ZZ-z3O"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAU-gh-jje">
+                                <rect key="frame" x="20" y="444" width="84" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Share"/>
+                                <connections>
+                                    <action selector="shareButtonTapped:" destination="eUY-oe-zvQ" eventType="touchUpInside" id="dhl-zG-L1X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Snf-uA-pop">
+                                <rect key="frame" x="121" y="444" width="67.666666666666686" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Safari"/>
+                                <connections>
+                                    <action selector="safariButtonTapped:" destination="eUY-oe-zvQ" eventType="touchUpInside" id="ieo-4l-P8m"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f53-VC-ixV">
+                                <rect key="frame" x="308" y="444" width="65" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Email"/>
+                                <connections>
+                                    <action selector="emailButtonTapped:" destination="eUY-oe-zvQ" eventType="touchUpInside" id="hOx-wm-vzd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bs-l1-6zW">
+                                <rect key="frame" x="206.66666666666666" y="444" width="83.333333333333343" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Camera"/>
+                                <connections>
+                                    <action selector="cameraButtonTapped:" destination="eUY-oe-zvQ" eventType="touchUpInside" id="qhJ-xg-mqB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="X6Q-cd-cdL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0Bs-l1-6zW" firstAttribute="top" secondItem="miE-8X-Sy5" secondAttribute="bottom" constant="5" id="BWZ-rZ-hUp"/>
+                            <constraint firstItem="f53-VC-ixV" firstAttribute="top" secondItem="miE-8X-Sy5" secondAttribute="bottom" constant="5" id="Bdx-62-SIZ"/>
+                            <constraint firstItem="Snf-uA-pop" firstAttribute="leading" secondItem="xAU-gh-jje" secondAttribute="trailing" constant="17" id="NYq-4N-ZVE"/>
+                            <constraint firstItem="xAU-gh-jje" firstAttribute="leading" secondItem="X6Q-cd-cdL" secondAttribute="leading" constant="20" id="RH7-Gm-drc"/>
+                            <constraint firstItem="X6Q-cd-cdL" firstAttribute="trailing" secondItem="f53-VC-ixV" secondAttribute="trailing" constant="20" id="X4o-M8-O4e"/>
+                            <constraint firstItem="f53-VC-ixV" firstAttribute="leading" secondItem="0Bs-l1-6zW" secondAttribute="trailing" constant="18" id="dH8-uk-irn"/>
+                            <constraint firstItem="miE-8X-Sy5" firstAttribute="top" secondItem="X6Q-cd-cdL" secondAttribute="top" constant="30" id="dlK-kE-Hh3"/>
+                            <constraint firstItem="Snf-uA-pop" firstAttribute="top" secondItem="miE-8X-Sy5" secondAttribute="bottom" constant="5" id="hsx-FA-Xsx"/>
+                            <constraint firstItem="0Bs-l1-6zW" firstAttribute="leading" secondItem="Snf-uA-pop" secondAttribute="trailing" constant="18" id="jBx-BT-QQt"/>
+                            <constraint firstItem="X6Q-cd-cdL" firstAttribute="trailing" secondItem="miE-8X-Sy5" secondAttribute="trailing" constant="20" id="kT6-lV-YTy"/>
+                            <constraint firstItem="miE-8X-Sy5" firstAttribute="leading" secondItem="X6Q-cd-cdL" secondAttribute="leading" constant="20" id="qDJ-PH-NST"/>
+                            <constraint firstItem="xAU-gh-jje" firstAttribute="top" secondItem="miE-8X-Sy5" secondAttribute="bottom" constant="5" id="vlc-KL-muR"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="miE-8X-Sy5" id="B9q-ST-GVC"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h7n-BB-MDN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="290.83969465648852" y="-199.29577464788733"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Hubble-Jupiter-2021" width="1483" height="1483"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
