@@ -6,7 +6,13 @@ class EmojiTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let savedEmojis = Emoji.loadFromFile() {
+             emojis = savedEmojis
+         } else {
+             emojis = Emoji.loadSampleEmoji()
+         }
         configureEmojiTableView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -18,23 +24,16 @@ class EmojiTableViewController: UITableViewController {
     func configureEmojiTableView() {
         tableView.rowHeight          = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
-        
-        if Emoji.loadFromFile().count > 0 {
-            emojis = Emoji.loadFromFile()
-        } else {
-            emojis = Emoji.loadSampleEmoji()
-        }
+    
     }
     
     
     @IBSegueAction func addEditEmoji(_ coder: NSCoder, sender: Any?) -> AddEditEmojiTableViewController? {
         if let cell = sender as? UITableViewCell,
            let indexPath = tableView.indexPath(for: cell) {
-            //Editing Emoji
             let emojiToEdit = emojis[indexPath.row]
             return AddEditEmojiTableViewController(coder: coder, emoji: nil)
         } else {
-            //Adding Emoji
             return AddEditEmojiTableViewController(coder: coder, emoji: nil)
         }
     }
@@ -54,6 +53,7 @@ class EmojiTableViewController: UITableViewController {
             emojis.append(emoji)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
+        Emoji.saveToFile(emojies: emojis)
     }
     
     

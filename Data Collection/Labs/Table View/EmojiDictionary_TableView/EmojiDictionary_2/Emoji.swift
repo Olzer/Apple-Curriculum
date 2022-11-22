@@ -1,35 +1,40 @@
 import Foundation
 
-struct Emoji: Codable {
+class Emoji: Codable {
     var symbol     : String
     var name       : String
     var descriprion: String
     var usage      : String
     
+    init(symbol: String, name: String, descriprion: String, usage: String) {
+        self.symbol = symbol
+        self.name = name
+        self.descriprion = descriprion
+        self.usage = usage
+    }
+    
     static var documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let archiveURL         = documentsDirectory.appendingPathComponent("emojis").appendingPathExtension("plist")
+    static let archiveURL = documentsDirectory.appendingPathComponent("emojis").appendingPathExtension("plist")
     
     
     static func saveToFile(emojies: [Emoji]) {
         let propertyListEncoder = PropertyListEncoder()
         let encodeEmojies = try? propertyListEncoder.encode(emojies)
+        
         try? encodeEmojies?.write(to: archiveURL, options: .noFileProtection)
     }
     
-    static func loadFromFile() -> [Emoji] {
+    static func loadFromFile() -> [Emoji]? {
+        guard let codedEmojis = try? Data(contentsOf: archiveURL) else { return nil }
+        
         let propertyListDecoder = PropertyListDecoder()
         
-        if let retrievedEmojiesData = try? Data(contentsOf: archiveURL),
-           let decodedEmojis        = try? propertyListDecoder.decode(Array<Emoji>.self, from: retrievedEmojiesData) {
-            return decodedEmojis
-        } else {
-            return []
-        }
+        return try? propertyListDecoder.decode(Array<Emoji>.self, from: codedEmojis)
     }
     
     
     static func loadSampleEmoji() -> [Emoji] {
-        var emojis: [Emoji] = [
+        return [
             Emoji(symbol: "😁", name: "Beaming Face with Smiling Eyes", descriprion: "Teeth may be smoothed-over or crosshatched. ", usage: "Often expresses a radiant, gratified happiness. Tone varies, including warm, silly, amused, or proud."),
             Emoji(symbol: "😊", name: "Smiling Face with Smiling Eyes", descriprion: "Closed smile turning up to rosy cheeks. ", usage: "Often expresses genuine happiness and warm, positive feelings."),
             Emoji(symbol: "🫶", name: "Heart Hands", descriprion: "Two hands forming a heart shape.", usage: "Used to express love and support."), Emoji(symbol: "😂", name: "Face with Tears of Joy", descriprion: "Face with a big grin, uplifted eyebrows, and smiling eyes, each shedding a tear from laughing so hard.", usage: "Widely used to show something is funny or pleasing. "),
@@ -40,6 +45,5 @@ struct Emoji: Codable {
             Emoji(symbol: "😉", name: "Winking Face", descriprion: "Smile or open mouth shown winking, usually its left eye. ", usage: "May signal a joke, flirtation, hidden meaning, or general positivity. Tone varies, including playful, affectionate, suggestive, or ironic."),
             Emoji(symbol: "❤️", name: "Red Heart", descriprion: "A classic red love heart emoji, used for expressions of love and romance.", usage: "Love")
         ]
-        return emojis
     }
 }
