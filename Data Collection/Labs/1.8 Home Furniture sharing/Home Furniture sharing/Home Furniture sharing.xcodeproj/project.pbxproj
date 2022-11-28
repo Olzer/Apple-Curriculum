@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		1895D6982935165D00D914AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895D6972935165D00D914AD /* AppDelegate.swift */; };
 		1895D69A2935165D00D914AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895D6992935165D00D914AD /* SceneDelegate.swift */; };
-		1895D69C2935165D00D914AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895D69B2935165D00D914AD /* ViewController.swift */; };
 		1895D69F2935165D00D914AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1895D69D2935165D00D914AD /* Main.storyboard */; };
 		1895D6A12935165E00D914AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1895D6A02935165E00D914AD /* Assets.xcassets */; };
 		1895D6A42935165E00D914AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1895D6A22935165E00D914AD /* LaunchScreen.storyboard */; };
 		1895D6AC293517AA00D914AD /* HomeFurniture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895D6AB293517AA00D914AD /* HomeFurniture.swift */; };
+		1895D6AE293519C800D914AD /* FurnitureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895D6AD293519C800D914AD /* FurnitureTableViewController.swift */; };
+		1895D6B029351A0D00D914AD /* FurnitureDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895D6AF29351A0D00D914AD /* FurnitureDataViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1895D6942935165D00D914AD /* Home Furniture sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Home Furniture sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1895D6972935165D00D914AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1895D6992935165D00D914AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1895D69B2935165D00D914AD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1895D69E2935165D00D914AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1895D6A02935165E00D914AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1895D6A32935165E00D914AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1895D6A52935165E00D914AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1895D6AB293517AA00D914AD /* HomeFurniture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFurniture.swift; sourceTree = "<group>"; };
+		1895D6AD293519C800D914AD /* FurnitureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureTableViewController.swift; sourceTree = "<group>"; };
+		1895D6AF29351A0D00D914AD /* FurnitureDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureDataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,15 +61,32 @@
 			isa = PBXGroup;
 			children = (
 				1895D6972935165D00D914AD /* AppDelegate.swift */,
-				1895D6AB293517AA00D914AD /* HomeFurniture.swift */,
 				1895D6992935165D00D914AD /* SceneDelegate.swift */,
-				1895D69B2935165D00D914AD /* ViewController.swift */,
+				1895D6B129351A1700D914AD /* Models */,
+				1895D6B229351A2400D914AD /* VC */,
 				1895D69D2935165D00D914AD /* Main.storyboard */,
-				1895D6A02935165E00D914AD /* Assets.xcassets */,
 				1895D6A22935165E00D914AD /* LaunchScreen.storyboard */,
+				1895D6A02935165E00D914AD /* Assets.xcassets */,
 				1895D6A52935165E00D914AD /* Info.plist */,
 			);
 			path = "Home Furniture sharing";
+			sourceTree = "<group>";
+		};
+		1895D6B129351A1700D914AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1895D6AB293517AA00D914AD /* HomeFurniture.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1895D6B229351A2400D914AD /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				1895D6AD293519C800D914AD /* FurnitureTableViewController.swift */,
+				1895D6AF29351A0D00D914AD /* FurnitureDataViewController.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,8 +160,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1895D69C2935165D00D914AD /* ViewController.swift in Sources */,
+				1895D6B029351A0D00D914AD /* FurnitureDataViewController.swift in Sources */,
 				1895D6982935165D00D914AD /* AppDelegate.swift in Sources */,
+				1895D6AE293519C800D914AD /* FurnitureTableViewController.swift in Sources */,
 				1895D69A2935165D00D914AD /* SceneDelegate.swift in Sources */,
 				1895D6AC293517AA00D914AD /* HomeFurniture.swift in Sources */,
 			);
