@@ -106,6 +106,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j3r-nv-25q"/>
+                    <connections>
+                        <outlet property="choosePhotoButton" destination="2O9-xt-BdM" id="8YD-HP-uW7"/>
+                        <outlet property="furnitureDescriptionLabel" destination="gCa-mE-gAD" id="IHK-Hn-a5N"/>
+                        <outlet property="furnitureTitleLabel" destination="gCa-mE-gAD" id="LbY-Yi-a2i"/>
+                        <outlet property="imageViewOutlet" destination="VZh-4M-wWk" id="IKq-2r-4ja"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4j-d1-2o0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

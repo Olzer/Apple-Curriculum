@@ -15,6 +15,7 @@
 		1895D6AC293517AA00D914AD /* HomeFurniture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895D6AB293517AA00D914AD /* HomeFurniture.swift */; };
 		1895D6AE293519C800D914AD /* FurnitureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895D6AD293519C800D914AD /* FurnitureTableViewController.swift */; };
 		1895D6B029351A0D00D914AD /* FurnitureDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895D6AF29351A0D00D914AD /* FurnitureDataViewController.swift */; };
+		1895D6B42935220200D914AD /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895D6B32935220200D914AD /* Room.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		1895D6AB293517AA00D914AD /* HomeFurniture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFurniture.swift; sourceTree = "<group>"; };
 		1895D6AD293519C800D914AD /* FurnitureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureTableViewController.swift; sourceTree = "<group>"; };
 		1895D6AF29351A0D00D914AD /* FurnitureDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureDataViewController.swift; sourceTree = "<group>"; };
+		1895D6B32935220200D914AD /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				1895D6AB293517AA00D914AD /* HomeFurniture.swift */,
+				1895D6B32935220200D914AD /* Room.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -83,8 +86,8 @@
 		1895D6B229351A2400D914AD /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				1895D6AD293519C800D914AD /* FurnitureTableViewController.swift */,
 				1895D6AF29351A0D00D914AD /* FurnitureDataViewController.swift */,
+				1895D6AD293519C800D914AD /* FurnitureTableViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			files = (
 				1895D6B029351A0D00D914AD /* FurnitureDataViewController.swift in Sources */,
 				1895D6982935165D00D914AD /* AppDelegate.swift in Sources */,
+				1895D6B42935220200D914AD /* Room.swift in Sources */,
 				1895D6AE293519C800D914AD /* FurnitureTableViewController.swift in Sources */,
 				1895D69A2935165D00D914AD /* SceneDelegate.swift in Sources */,
 				1895D6AC293517AA00D914AD /* HomeFurniture.swift in Sources */,
