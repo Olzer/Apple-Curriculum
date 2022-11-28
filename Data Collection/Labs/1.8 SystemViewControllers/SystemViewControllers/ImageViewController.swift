@@ -1,15 +1,15 @@
 import UIKit
 import SafariServices
+import MessageUI
 
 class ImageViewController: UIViewController,
-UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
 
@@ -32,6 +32,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
         let alertController = UIAlertController(title: "Choose image source", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { action in
@@ -54,12 +55,31 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         present(alertController, animated: true, completion: nil)
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaInfo info: [UIImagePickerController.InfoKey : Any]) {
-            
+            guard let selectedImage = info[.originalImage] as? UIImage else { return }
+            imageView.image = selectedImage
+            dismiss(animated: true, completion: nil)
         }
     }
     
     @IBAction func emailButtonTapped(_ sender: UIButton) {
         
+        func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith: MFMailComposeResult, error: Error?) {
+            dismiss(animated: true, completion: nil)
+        }
+        
+        guard MFMailComposeViewController.canSendMail() else { return }
+        
+        let mailComposer = MFMailComposeViewController()
+        mailComposer.mailComposeDelegate = self
+        
+        mailComposer.setToRecipients(["example@example.com"])
+        mailComposer.setSubject("Look at this")
+        mailComposer.setMessageBody("Hello, this is an email from the app I made", isHTML: false)
+        
+        if let image = imageView.image, let jpegData = image.jpegData(compressionQuality: 0.9) {
+            mailComposer.addAttachmentData(jpegData, mimeType: "image/jpeg", fileName: "photo.jpg")
+        }
+        present(mailComposer, animated: true, completion:  nil)
     }
     
 }
