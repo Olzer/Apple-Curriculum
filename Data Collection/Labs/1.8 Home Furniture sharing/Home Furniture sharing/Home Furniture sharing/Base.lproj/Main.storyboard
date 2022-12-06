@@ -61,6 +61,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="choosePhotoButtonTapped:" destination="pOM-Ze-33r" eventType="touchUpInside" id="GPa-dr-Cpl"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Furniture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7d-Dt-mk5">
                                 <rect key="frame" x="16" y="474" width="97" height="30"/>
@@ -83,7 +86,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oWb-Ts-Z1r">
                                 <rect key="frame" x="0.0" y="734" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="action" id="xZF-qd-jPl"/>
+                                    <barButtonItem systemItem="action" id="xZF-qd-jPl">
+                                        <connections>
+                                            <action selector="actionButtonTapped:" destination="pOM-Ze-33r" id="Zom-7D-gGe"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
