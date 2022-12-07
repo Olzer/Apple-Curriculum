@@ -16,6 +16,8 @@ class AddRegistrationTableViewController: UITableViewController {
     @IBOutlet weak var numberOfAdultsStepper: UIStepper!
     @IBOutlet weak var numberOfChildrenStepper: UIStepper!
     
+    @IBOutlet weak var wifiSwitch: UISwitch!
+    @IBOutlet weak var parkingSwitch: UISwitch!
     
     let checkInDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     let checkOutDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
@@ -67,6 +69,8 @@ class AddRegistrationTableViewController: UITableViewController {
         let checkOutDate = checkOutDateLabel.text ?? ""
         let numberOfAdults = numberOfAdultsLabel.text ?? ""
         let numberOfChildren = numberOfChildrenLabel.text ?? ""
+        let hasWifi = wifiSwitch.isOn
+        let hasGarage = parkingSwitch.isOn
         
         print("DONE TAPPED")
         print("firstName: \(firstName)")
@@ -76,6 +80,8 @@ class AddRegistrationTableViewController: UITableViewController {
         print("checkOut: \(checkOutDate)")
         print("numberOfAdults: \(numberOfAdults)")
         print("numberOfChildren: \(numberOfChildren)")
+        print("wifi: \(hasWifi)")
+        print("parking: \(hasGarage)")
     }
     
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
@@ -86,6 +92,13 @@ class AddRegistrationTableViewController: UITableViewController {
         updateNumberOfGuests()
     }
     
+    @IBAction func wifitSwitchChanged(_ sender: UISwitch) {
+        
+    }
+    
+    @IBAction func parkingSwitchChanged(_ sender: UISwitch) {
+        
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath {
