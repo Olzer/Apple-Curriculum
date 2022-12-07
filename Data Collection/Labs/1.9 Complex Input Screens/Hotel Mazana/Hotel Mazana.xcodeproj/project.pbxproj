@@ -14,6 +14,7 @@
 		1801CF722940C7ED007F257B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1801CF702940C7ED007F257B /* LaunchScreen.storyboard */; };
 		1801CF7A2940C986007F257B /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801CF792940C986007F257B /* Registration.swift */; };
 		1801CF7C2940C999007F257B /* RoomType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801CF7B2940C999007F257B /* RoomType.swift */; };
+		1801CF7F2940CE8D007F257B /* AddRegistrationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801CF7E2940CE8D007F257B /* AddRegistrationTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		1801CF732940C7ED007F257B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1801CF792940C986007F257B /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
 		1801CF7B2940C999007F257B /* RoomType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomType.swift; sourceTree = "<group>"; };
+		1801CF7E2940CE8D007F257B /* AddRegistrationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRegistrationTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +63,10 @@
 				1801CF652940C7EC007F257B /* AppDelegate.swift */,
 				1801CF672940C7EC007F257B /* SceneDelegate.swift */,
 				1801CF7D2940C9B5007F257B /* Models */,
+				1801CF802940CE97007F257B /* VC */,
 				1801CF6B2940C7EC007F257B /* Main.storyboard */,
-				1801CF6E2940C7ED007F257B /* Assets.xcassets */,
 				1801CF702940C7ED007F257B /* LaunchScreen.storyboard */,
+				1801CF6E2940C7ED007F257B /* Assets.xcassets */,
 				1801CF732940C7ED007F257B /* Info.plist */,
 			);
 			path = "Hotel Mazana";
@@ -76,6 +79,14 @@
 				1801CF7B2940C999007F257B /* RoomType.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1801CF802940CE97007F257B /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				1801CF7E2940CE8D007F257B /* AddRegistrationTableViewController.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1801CF7C2940C999007F257B /* RoomType.swift in Sources */,
+				1801CF7F2940CE8D007F257B /* AddRegistrationTableViewController.swift in Sources */,
 				1801CF662940C7EC007F257B /* AppDelegate.swift in Sources */,
 				1801CF7A2940C986007F257B /* Registration.swift in Sources */,
 				1801CF682940C7EC007F257B /* SceneDelegate.swift in Sources */,
