@@ -27,6 +27,18 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     
     @IBOutlet weak var roomTypeLabel: UILabel!
     
+    @IBOutlet weak var numberOfNightsLabel: UILabel!
+    @IBOutlet weak var dateOfNightsLabel: UILabel!
+    @IBOutlet weak var roomTypeCostLabel: UILabel!
+    @IBOutlet weak var roomNameLabel: UILabel!
+    @IBOutlet weak var wifiCostLabel: UILabel!
+    @IBOutlet weak var avaibleWifiLabel: UILabel!
+    @IBOutlet weak var garageCostLabel: UILabel!
+    @IBOutlet weak var avaibleGarageLabel: UILabel!
+    @IBOutlet weak var totalCostLabel: UILabel!
+    
+  
+    
     let checkInDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     let checkOutDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
     let checkInDateLabelCellIndexPath = IndexPath(row: 0, section: 1)
@@ -46,7 +58,6 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     
     var registration: Registration? {
         guard let roomType = roomType else { return nil }
-        
         let firstName = firstNameTextField.text ?? ""
         let lastName = lastNameTextField.text ?? ""
         let emailAdress = emailTextField.text ?? ""
@@ -93,8 +104,16 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         }
     }
     
-    @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
+    private func updateCharges() {
+        let checkInDate = checkInDatePicker.date.formatted(date: .abbreviated, time: .omitted)
+        let checkOutDate = checkOutDatePicker.date.formatted(date: .abbreviated, time: .omitted)
+        
 
+    }
+
+    
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true,completion: nil)
     }
     
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
@@ -120,7 +139,6 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         
         return selectedRoomTypeController
     }
-    
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath {
@@ -154,6 +172,7 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         tableView.beginUpdates()
         tableView.endUpdates()
     }
+    
     
 }
 
