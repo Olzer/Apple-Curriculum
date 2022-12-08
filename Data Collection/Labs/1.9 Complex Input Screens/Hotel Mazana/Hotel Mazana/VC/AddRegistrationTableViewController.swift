@@ -1,6 +1,12 @@
 import UIKit
 
-class AddRegistrationTableViewController: UITableViewController {
+class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeTableViewControllerDelegate {
+    func selectRoomTypeTableViewController(_ controller: SelectRoomTypeTableViewController, didSelect roomType: RoomType) {
+        self.roomType = roomType
+        updateRoomType()
+    }
+    
+    var roomType: RoomType?
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -19,6 +25,8 @@ class AddRegistrationTableViewController: UITableViewController {
     @IBOutlet weak var wifiSwitch: UISwitch!
     @IBOutlet weak var parkingSwitch: UISwitch!
     
+    @IBOutlet weak var roomTypeLabel: UILabel!
+    
     let checkInDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     let checkOutDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
     let checkInDateLabelCellIndexPath = IndexPath(row: 0, section: 1)
@@ -36,52 +44,57 @@ class AddRegistrationTableViewController: UITableViewController {
         }
     }
     
+    var registration: Registration? {
+        guard let roomType = roomType else { return nil }
+        
+        let firstName = firstNameTextField.text ?? ""
+        let lastName = lastNameTextField.text ?? ""
+        let emailAdress = emailTextField.text ?? ""
+        let checkInDate = checkInDatePicker.date
+        let checkOutDate = checkOutDatePicker.date
+        let numberOfAdults = Int(numberOfAdultsStepper.value)
+        let numberOfChildren = Int(numberOfChildrenStepper.value)
+        let hasWifi = wifiSwitch.isOn
+        let hasGarage = parkingSwitch.isOn
+  
+        return Registration(firstName: firstName, lastName: lastName, emailAdress: emailAdress, checkIndate: checkInDate, checkOutDate: checkOutDate, numberOfAdult: numberOfAdults, naumberOfchildren: numberOfChildren, wifi: hasWifi, garage: hasGarage, roomType: roomType)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
     }
     
-    func updateUI() {
+    private func updateUI() {
         let midNightToday = Calendar.current.startOfDay(for: Date())
         checkInDatePicker.minimumDate = midNightToday
-        checkInDatePicker.maximumDate = .none
         checkOutDatePicker.date = midNightToday
         updateDateViews()
         updateNumberOfGuests()
+        updateRoomType()
     }
     
-    func updateDateViews() {
+    private func updateDateViews() {
         checkOutDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: checkInDatePicker.date)
         checkInDateLabel.text = checkInDatePicker.date.formatted(date: .abbreviated, time: .omitted)
         checkOutDateLabel.text = checkOutDatePicker.date.formatted(date: .abbreviated, time: .omitted)
     }
     
-    func updateNumberOfGuests() {
+    private func updateNumberOfGuests() {
         numberOfAdultsLabel.text = "\(Int(numberOfAdultsStepper.value))"
         numberOfChildrenLabel.text = "\(Int(numberOfChildrenStepper.value))"
     }
     
+    private func updateRoomType() {
+        if let roomType = roomType {
+            roomTypeLabel.text = roomType.name
+        } else {
+            roomTypeLabel.text = "Not Set"
+        }
+    }
+    
     @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
-        let firstName = firstNameTextField.text ?? ""
-        let lastName = lastNameTextField.text ?? ""
-        let email = emailTextField.text ?? ""
-        let checkInDate = checkInDateLabel.text ?? ""
-        let checkOutDate = checkOutDateLabel.text ?? ""
-        let numberOfAdults = numberOfAdultsLabel.text ?? ""
-        let numberOfChildren = numberOfChildrenLabel.text ?? ""
-        let hasWifi = wifiSwitch.isOn
-        let hasGarage = parkingSwitch.isOn
-        
-        print("DONE TAPPED")
-        print("firstName: \(firstName)")
-        print("lastName: \(lastName)")
-        print("email: \(email)")
-        print("checkIn: \(checkInDate)")
-        print("checkOut: \(checkOutDate)")
-        print("numberOfAdults: \(numberOfAdults)")
-        print("numberOfChildren: \(numberOfChildren)")
-        print("wifi: \(hasWifi)")
-        print("parking: \(hasGarage)")
+
     }
     
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
@@ -99,6 +112,15 @@ class AddRegistrationTableViewController: UITableViewController {
     @IBAction func parkingSwitchChanged(_ sender: UISwitch) {
         
     }
+    
+    @IBSegueAction func selectRoomType(_ coder: NSCoder) -> SelectRoomTypeTableViewController? {
+        let selectedRoomTypeController = SelectRoomTypeTableViewController(coder: coder)
+        selectedRoomTypeController?.delegete = self
+        selectedRoomTypeController?.roomType = roomType
+        
+        return selectedRoomTypeController
+    }
+    
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath {
