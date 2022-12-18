@@ -6,13 +6,16 @@ class EmojiTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configStatitTableView()
+    }
+    
+    func configStatitTableView() {
         if let savedEmojis = Emoji.loadFromFile() {
-             emojis = savedEmojis
-         } else {
-             emojis = Emoji.loadSampleEmoji()
-         }
+            emojis = savedEmojis
+        } else {
+            emojis = Emoji.loadSampleEmoji()
+        }
         configureEmojiTableView()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -20,13 +23,11 @@ class EmojiTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    
     func configureEmojiTableView() {
         tableView.rowHeight          = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
     
     }
-    
     
     @IBSegueAction func addEditEmoji(_ coder: NSCoder, sender: Any?) -> AddEditEmojiTableViewController? {
         if let cell = sender as? UITableViewCell,
@@ -37,7 +38,6 @@ class EmojiTableViewController: UITableViewController {
             return AddEditEmojiTableViewController(coder: coder, emoji: nil)
         }
     }
-    
     
     @IBAction func unwindToEmojiTableView(segue: UIStoryboardSegue) {
         guard segue.identifier == "saveUnwind",
@@ -56,7 +56,6 @@ class EmojiTableViewController: UITableViewController {
         Emoji.saveToFile(emojies: emojis)
     }
     
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -64,7 +63,6 @@ class EmojiTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return emojis.count
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell", for: indexPath) as! EmojiTableViewCell
@@ -75,13 +73,11 @@ class EmojiTableViewController: UITableViewController {
         return cell
     }
     
-    
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
         let tableViewEditingMode = tableView.isEditing
         
         tableView.setEditing(!tableViewEditingMode, animated: true)
     }
-    
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let movedEmoji = emojis.remove(at: sourceIndexPath.row)
@@ -89,11 +85,9 @@ class EmojiTableViewController: UITableViewController {
         emojis.insert(movedEmoji, at: destinationIndexPath.row)
     }
     
-    
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
-    
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -101,6 +95,7 @@ class EmojiTableViewController: UITableViewController {
             Emoji.saveToFile(emojies: emojis)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         } else if editingStyle == .insert {
+            
         }
     }
 }
