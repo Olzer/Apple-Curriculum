@@ -1,6 +1,6 @@
 import UIKit
 
-class ToDoTVC: UITableViewController {
+class ToDoTVC: UITableViewController, ToDoCellDelegate {
 
     var toDos = [ToDo]()
     override func viewDidLoad() {
@@ -17,6 +17,16 @@ class ToDoTVC: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
     }
     
+    func checkmarkTapped(sender: ToDoCell) {
+        if let indexPath = tableView.indexPath(for: sender) {
+            var toDo = toDos[indexPath.row]
+            toDo.isComplete.toggle()
+            toDos[indexPath.row] = toDo
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            ToDo.saveToDos(toDos)
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -28,14 +38,10 @@ class ToDoTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCell", for: indexPath) as! ToDoCell
         
-        //        let toDo = toDos[indexPath.row]
-        //        var content = cell.defaultContentConfiguration()
-        //        content.text = toDo.title
-        //        cell.contentConfiguration = content
-        
         let toDo = toDos[indexPath.row]
         cell.titleLabel?.text = toDo.title
         cell.isCompleteButton.isSelected = toDo.isComplete
+        cell.delegate = self
         
         return cell
     }
@@ -48,6 +54,7 @@ class ToDoTVC: UITableViewController {
         if editingStyle == .delete {
             toDos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            ToDo.saveToDos(toDos)
         }
     }
     
@@ -66,6 +73,7 @@ class ToDoTVC: UITableViewController {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
         }
+        ToDo.saveToDos(toDos)
     }
 
     @IBSegueAction func editToDo(_ coder: NSCoder, sender: Any?) -> ToDoDetailTVC? {

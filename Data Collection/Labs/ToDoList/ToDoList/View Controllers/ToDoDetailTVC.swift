@@ -17,19 +17,6 @@ class ToDoDetailTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let currentDueDate: Date
-        if let toDo = toDo {
-            navigationItem.title = "To-Do"
-            titleTextField.text = toDo.title
-            isCompleteButton.isSelected = toDo.isComplete
-            currentDueDate = toDo.dueDate
-            notesTextView.text = toDo.notes
-        } else {
-            currentDueDate = Date().addingTimeInterval(24*60*60)
-        }
-        dueDatePicker.date = currentDueDate
-        updateDueDateLabel(date: currentDueDate)
-        updateSaveButtonState()
         updateUI()
     }
 
@@ -47,15 +34,25 @@ class ToDoDetailTVC: UITableViewController {
         dueDatePicker.date = currentDueDate
         updateDueDateLabel(date: currentDueDate)
         updateSaveButtonState()
+        updateNotesTextView()
     }
-    
+        
     private func updateSaveButtonState() {
         let shouldEnableSaveButton = titleTextField.text?.isEmpty == false
         saveButton.isEnabled = shouldEnableSaveButton
     }
     
     private func updateDueDateLabel(date: Date) {
+        if isDatePickerHidden {
+            dueDatePicker.isHidden = true
+        } else {
+            dueDatePicker.isHidden = false
+        }
         dueDateLabel.text = date.formatted(.dateTime.month(.defaultDigits).day().year(.twoDigits).hour().minute())
+    }
+    
+    private func updateNotesTextView() {
+        notesTextView.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
@@ -80,7 +77,7 @@ class ToDoDetailTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath {
-        case datePickerIndexPath where isDatePickerHidden == true:
+        case datePickerIndexPath where isDatePickerHidden:
             return 0
         case notesIndexPath:
             return 200
@@ -112,7 +109,6 @@ class ToDoDetailTVC: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        
         guard segue.identifier == "saveUnwind" else { return }
         
         let title = titleTextField.text!
@@ -121,14 +117,13 @@ class ToDoDetailTVC: UITableViewController {
         let notes = notesTextView.text
         
         if toDo != nil {
-                toDo?.title = title
-                toDo?.isComplete = isComplete
-                toDo?.dueDate = dueDate
-                toDo?.notes = notes
-            print("+")
-            } else {
-                toDo = ToDo(title: title, isComplete: isComplete,
-                   dueDate: dueDate, notes: notes)
-            }
+            toDo?.title = title
+            toDo?.isComplete = isComplete
+            toDo?.dueDate = dueDate
+            toDo?.notes = notes
+        } else {
+            toDo = ToDo(title: title, isComplete: isComplete,
+                        dueDate: dueDate, notes: notes)
+        }
     }
 }

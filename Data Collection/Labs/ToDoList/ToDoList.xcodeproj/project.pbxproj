@@ -43,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18BFEDC0297FF17C00DA948A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18AAD8C52951FE2D00A5584C /* ToDoCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		18D4481929509F360010676F = {
 			isa = PBXGroup;
 			children = (
@@ -65,9 +73,10 @@
 				18D4482529509F360010676F /* AppDelegate.swift */,
 				18D4482729509F360010676F /* SceneDelegate.swift */,
 				18D4483B2950A0BA0010676F /* Models */,
-				18D4483E2950A20F0010676F /* VC */,
-				18D4482B29509F360010676F /* Main.storyboard */,
+				18BFEDC0297FF17C00DA948A /* Views */,
+				18D4483E2950A20F0010676F /* View Controllers */,
 				18D4482E29509F370010676F /* Assets.xcassets */,
+				18D4482B29509F360010676F /* Main.storyboard */,
 				18D4483029509F370010676F /* LaunchScreen.storyboard */,
 				18D4483329509F370010676F /* Info.plist */,
 			);
@@ -82,14 +91,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		18D4483E2950A20F0010676F /* VC */ = {
+		18D4483E2950A20F0010676F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				18D4483C2950A2060010676F /* ToDoTVC.swift */,
-				18AAD8C52951FE2D00A5584C /* ToDoCell.swift */,
 				184F04972951BA8600FFFBAB /* ToDoDetailTVC.swift */,
 			);
-			path = VC;
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -12,7 +12,6 @@ class EmployeeDetailTableViewController: UITableViewController, UITextFieldDeleg
         employeeTypeLabel.text = employeeType.description
         updateSaveButtonState()
     }
-    
 
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var dobLabel: UILabel!
