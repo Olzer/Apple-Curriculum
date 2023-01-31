@@ -4,16 +4,30 @@
  Using the code below, use the `map` function to create an array of `Int` values, whose values are equal to the original integer value, plus 1. Use `$0` as you iterate through the values of the array. Print the resulting collection.
  */
 let testScores = [65, 80, 88, 90, 47]
-
-
+//First way
+let addOne = testScores.map { (score) -> Int in
+    return score + 1
+}
+print("First way",addOne)
+//Second way
+let addOne1 = testScores.map { $0 + 1}
+print("Second way", addOne1)
 //:  Using the code below, use the `filter` function to create a new array of `String` values. The new array should only include Strings longer than four characters. Use `$0` as you iterate through the values of the array.  Print the resulting collection.
 let schoolSubjects = ["Math", "Computer Science", "Gym", "English", "Biology"]
-
-
+//First way
+let filteredSubjects = schoolSubjects.filter { (subject) -> Bool in
+    return subject.count > 4
+}
+print(filteredSubjects)
+//Second way
+let filteredSubject2 = schoolSubjects.filter { $0.count > 4 }
+print(filteredSubject2)
 //:  Using the code below, use the `reduce` function to subtract all of the values within the array from the starting value 100. Print the resulting value.
 let damageTaken = [25, 10, 15, 30, 20]
-
-
+let subtracedDamage = damageTaken.reduce(100, { (HP, damage) in
+    HP - damage
+})
+print(subtracedDamage)
 /*:
  _Copyright © 2021 Apple Inc._
 
